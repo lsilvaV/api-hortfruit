@@ -51,7 +51,7 @@ class Operacao{
     
 
     function deleteFrutas($campo_1){
-        $stmt = $this->con->prepare("delete from frutas_tb where uid=?");
+        $stmt = $this->con->prepare("delete from frutas_tb where uidfruta = ?");
         $stmt->bind_param("i",$campo_1);
         if($stmt->execute())
             return true;
