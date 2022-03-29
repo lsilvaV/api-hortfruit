@@ -24,13 +24,13 @@ class Operacao{
     function getFrutas(){
         $stmt = $this->con->prepare("Select * from frutas_tb");
         $stmt->execute();
-        $stmt->bind_result($uid,$nomefruta,$imgfruta,$valorfruta);
+        $stmt->bind_result($uidfruta,$nomefruta,$imgfruta,$valorfruta);
 
         $dicas = array();
 
         while($stmt->fetch()){
             $dica = array();
-            $dica['uid'] = $uid;
+            $dica['uidfruta'] = $uidfruta;
             $dica['nomefruta'] = $nomefruta;
             $dica['imgfruta'] = $imgfruta;
             $dica['valorfruta'] = $valorfruta;
@@ -42,7 +42,7 @@ class Operacao{
     }
 
     function updateFrutas($campo_1,$campo_2,$campo_3,$campo_4){
-        $stmt = $this->con->prepare("update frutas_tb set nomefruta = ?, imgfruta = ?, valorfruta = ? where uid = ?");
+        $stmt = $this->con->prepare("update frutas_tb set nomefruta = ?, imgfruta = ?, valorfruta = ? where uidfruta = ?");
         $stmt->bind_param("sssi", $campo_2, $campo_3, $campo_4, $campo_1);
         if($stmt -> execute())
             return true;
